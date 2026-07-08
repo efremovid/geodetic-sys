@@ -40,7 +40,7 @@ SMTP_PASS=ваш_пароль_приложения
 CONTACT_TO=th5tr@yandex.ru
 ```
 
-## Production
+## Production (локально)
 
 ```bash
 npm run build
@@ -49,6 +49,41 @@ npm start
 ```
 
 Сервер отдаёт статику из `dist/` и обрабатывает `/api/contact`.
+
+## GitHub + Vercel
+
+### 1. Репозиторий на GitHub
+
+```bash
+git remote add origin https://github.com/ВАШ_ЛОГИН/geodetic-sys.git
+git push -u origin main
+```
+
+Создайте пустой репозиторий на [github.com/new](https://github.com/new) (без README и .gitignore).
+
+### 2. Деплой на Vercel
+
+1. [vercel.com](https://vercel.com) → **Add New Project** → импорт репозитория
+2. Framework: **Vite** (определится автоматически)
+3. Build Command: `npm run build`, Output: `dist`
+4. **Environment Variables** (Settings → Environment Variables):
+
+| Переменная | Значение |
+|------------|----------|
+| `SMTP_HOST` | `smtp.yandex.ru` |
+| `SMTP_PORT` | `465` |
+| `SMTP_SECURE` | `true` |
+| `SMTP_USER` | ваш email Yandex |
+| `SMTP_PASS` | пароль приложения Yandex |
+| `CONTACT_TO` | email для получения заявок |
+
+5. Deploy
+
+Форма на Vercel работает через serverless-функцию `api/contact.js` — отдельный сервер не нужен.
+
+### 3. Проверка
+
+После деплоя отправьте тестовую заявку с сайта. Письмо должно прийти на `CONTACT_TO`.
 
 ## Структура страниц
 
