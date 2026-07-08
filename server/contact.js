@@ -8,22 +8,52 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
 }
 
-function createTransporter() {
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE } = process.env
+function env(name) {
+  const value = process.env[name]
+  if (!value) return ''
+  return value.trim().replace(/^["']|["']$/g, '')
+}
 
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+function createTransporter() {
+  const host = env('SMTP_HOST')
+  const user = env('SMTP_USER')
+  const pass = env('SMTP_PASS')
+  const port = Number(env('SMTP_PORT') || 465)
+
+  if (!host || !user || !pass) {
     return null
   }
 
+  const secure = port === 465
+
   return nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: Number(SMTP_PORT || 465),
-    secure: SMTP_SECURE !== 'false',
-    auth: {
-      user: SMTP_USER,
-      pass: SMTP_PASS,
+    host,
+    port,
+    secure,
+    requireTLS: !secure,
+    auth: { user, pass },
+    connectionTimeout: 15_000,
+    greetingTimeout: 15_000,
+    socketTimeout: 20_000,
+    tls: {
+      minVersion: 'TLSv1.2',
     },
   })
+}
+
+function mapSmtpError(err) {
+  const code = err?.code
+  const responseCode = err?.responseCode
+
+  if (code === 'EAUTH' || responseCode === 535) {
+    return 'Ошибка авторизации почты. Проверьте SMTP_USER и пароль приложения Yandex.'
+  }
+
+  if (code === 'ETIMEDOUT' || code === 'ECONNECTION' || code === 'ESOCKET') {
+    return 'Не удалось подключиться к почтовому серверу. Попробуйте позже.'
+  }
+
+  return 'Не удалось отправить письмо. Попробуйте позже.'
 }
 
 export async function sendContactEmail(body) {
@@ -36,8 +66,9 @@ export async function sendContactEmail(body) {
     }
   }
 
+  const smtpUser = env('SMTP_USER')
   const transporter = createTransporter()
-  const toEmail = process.env.CONTACT_TO || process.env.SMTP_USER
+  const toEmail = env('CONTACT_TO') || smtpUser
 
   if (!transporter || !toEmail) {
     console.error('SMTP not configured')
@@ -57,8 +88,10 @@ export async function sendContactEmail(body) {
   `
 
   try {
+    await transporter.verify()
+
     await transporter.sendMail({
-      from: `"GEODETIC.SYS" <${process.env.SMTP_USER}>`,
+      from: `"GEODETIC.SYS" <${smtpUser}>`,
       to: toEmail,
       replyTo: email.trim(),
       subject: `Заявка с сайта — ${name}`,
@@ -76,7 +109,7 @@ export async function sendContactEmail(body) {
     console.error('Email send error:', err)
     return {
       status: 500,
-      body: { error: 'Не удалось отправить письмо. Попробуйте позже.' },
+      body: { error: mapSmtpError(err) },
     }
   }
 }
