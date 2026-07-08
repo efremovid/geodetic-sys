@@ -25,16 +25,19 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
   const { showToast } = useToast()
   const [form, setForm] = useState<FormData>(initialForm)
   const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    if (status) setStatus(null)
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setStatus(null)
 
     try {
       const res = await fetch('/api/contact', {
@@ -43,19 +46,21 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
         body: JSON.stringify(form),
       })
 
-      const data = await res.json()
+      const data = await res.json().catch(() => ({}))
 
       if (!res.ok) {
         throw new Error(data.error || 'Ошибка отправки')
       }
 
-      showToast('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.')
+      const successMessage = 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
+      setStatus({ type: 'success', message: successMessage })
+      showToast(successMessage)
       setForm(initialForm)
     } catch (err) {
-      showToast(
-        err instanceof Error ? err.message : 'Не удалось отправить заявку. Попробуйте позже.',
-        'error',
-      )
+      const errorMessage =
+        err instanceof Error ? err.message : 'Не удалось отправить заявку. Попробуйте позже.'
+      setStatus({ type: 'error', message: errorMessage })
+      showToast(errorMessage, 'error')
     } finally {
       setLoading(false)
     }
@@ -129,6 +134,17 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
       >
         {loading ? 'Отправка…' : 'Отправить заявку'}
       </button>
+
+      {status && (
+        <p
+          className={`${styles.status} ${status.type === 'success' ? styles.statusSuccess : styles.statusError}`}
+          role="status"
+          aria-live="polite"
+        >
+          {status.type === 'success' ? '✓ ' : '✕ '}
+          {status.message}
+        </p>
+      )}
     </form>
   )
 }

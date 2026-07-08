@@ -32,9 +32,11 @@
   padding: 0.875rem 1.25rem;
   border-radius: $radius-md;
   font-size: 0.9375rem;
-  background: $color-bg-white;
-  border: 1px solid $color-border;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  font-weight: 500;
+  background: $color-bg-dark;
+  color: $color-text-on-dark;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   animation: slideIn 0.3s ease;
   overflow-wrap: anywhere;
 
@@ -45,13 +47,13 @@
 }
 
 :global(.toast--success) {
-  border-color: rgba($color-success, 0.35);
-  color: $color-success;
+  border-color: rgba($color-success, 0.5);
+  background: #0f2a1a;
 }
 
 :global(.toast--error) {
-  border-color: rgba($color-error, 0.35);
-  color: $color-error;
+  border-color: rgba($color-error, 0.5);
+  background: #2a0f12;
 }
 
 @keyframes slideIn {

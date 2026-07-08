@@ -119,3 +119,24 @@
     background: $color-accent-hover;
   }
 }
+
+.status {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: $radius-sm;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.statusSuccess {
+  color: $color-success;
+  background: rgba($color-success, 0.08);
+  border: 1px solid rgba($color-success, 0.25);
+}
+
+.statusError {
+  color: $color-error;
+  background: rgba($color-error, 0.08);
+  border: 1px solid rgba($color-error, 0.25);
+}
