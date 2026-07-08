@@ -1,0 +1,290 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section-padding;
+}
+
+.sectionMuted {
+  background: $color-bg-elevated;
+}
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - #{$header-height});
+  min-height: calc(100dvh - #{$header-height});
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: $color-bg;
+
+  @include respond-below(xs) {
+    min-height: calc(100vh - #{$header-height-narrow});
+    min-height: calc(100dvh - #{$header-height-narrow});
+  }
+}
+
+.heroGrid {
+  @include topo-map-overlay;
+}
+
+.heroInner {
+  @include container;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 3rem;
+  padding-block: clamp(3rem, 8vw, 5rem);
+  width: 100%;
+
+  @include respond-to(lg) {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: end;
+  }
+
+  @include respond-below(xs) {
+    gap: 1.5rem;
+    padding-block: clamp(1.75rem, 6vw, 2.5rem);
+  }
+}
+
+.heroTag {
+  @include section-label;
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-family: $font-sans;
+  font-size: clamp(1.875rem, 10vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+  color: $color-text;
+  overflow-wrap: anywhere;
+
+  @include respond-below(xs) {
+    font-size: clamp(1.625rem, 11vw, 2rem);
+    margin-bottom: 1rem;
+  }
+}
+
+.heroDesc {
+  max-width: 540px;
+  color: $color-text-muted;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  @include respond-below(xs) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.btnPrimary,
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: $radius-sm;
+  transition: background $transition, border-color $transition, color $transition;
+  @include focus-ring;
+
+  @include respond-below(xs) {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+.btnPrimary {
+  color: $color-white;
+  background: $color-text;
+
+  &:hover {
+    background: $color-bg-dark-soft;
+  }
+}
+
+.btnSecondary {
+  color: $color-text;
+  background: transparent;
+  border: 1px solid $color-border-strong;
+
+  &:hover {
+    border-color: $color-text;
+  }
+}
+
+.heroAside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @include respond-below(xs) {
+    align-items: flex-start;
+  }
+}
+
+.coords {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-family: $font-mono;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: $color-text-dim;
+  text-transform: uppercase;
+
+  @include respond-below(xs) {
+    align-items: flex-start;
+    font-size: 0.625rem;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+}
+
+.servicesGrid {
+  display: grid;
+  gap: 1rem;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.aboutSection {
+  @include section-padding;
+  background: $color-bg-dark;
+  color: $color-text-on-dark;
+}
+
+.aboutText {
+  color: $color-text-muted-on-dark;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stats {
+  display: grid;
+  gap: 2rem;
+
+  @include respond-to(sm) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  @include respond-below(xs) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.statValue {
+  display: block;
+  font-family: $font-serif;
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 600;
+  color: $color-accent;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+}
+
+.contactSection {
+  background: $color-bg;
+}
+
+.contactGrid {
+  display: grid;
+  gap: 3rem;
+
+  @include respond-below(xs) {
+    gap: 2rem;
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.contactLabel {
+  @include section-label;
+  display: block;
+  color: $color-text-dim;
+  margin-bottom: 0.375rem;
+}
+
+.contactValue,
+.contactRegion {
+  font-size: 1.0625rem;
+  color: $color-text;
+}
+
+.contactValue {
+  transition: color $transition;
+  @include focus-ring;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.contactNote {
+  margin-top: 1.5rem;
+  color: $color-text-dim;
+  font-size: 0.875rem;
+
+  a {
+    color: $color-accent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.formTitle {
+  @include section-label;
+  color: $color-text-dim;
+  margin-bottom: 1rem;
+}

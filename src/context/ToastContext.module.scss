@@ -1,0 +1,66 @@
+@use '../styles/variables' as *;
+
+.toastContainer {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: min(400px, calc(100vw - 2rem));
+}
+
+:global(.toast-container) {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  left: 0.75rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: min(400px, calc(100vw - 1.5rem));
+
+  @media (max-width: 359px) {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+}
+
+:global(.toast) {
+  padding: 0.875rem 1.25rem;
+  border-radius: $radius-md;
+  font-size: 0.9375rem;
+  background: $color-bg-white;
+  border: 1px solid $color-border;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  animation: slideIn 0.3s ease;
+  overflow-wrap: anywhere;
+
+  @media (max-width: 359px) {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+:global(.toast--success) {
+  border-color: rgba($color-success, 0.35);
+  color: $color-success;
+}
+
+:global(.toast--error) {
+  border-color: rgba($color-error, 0.35);
+  color: $color-error;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

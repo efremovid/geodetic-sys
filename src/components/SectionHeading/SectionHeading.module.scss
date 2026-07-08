@@ -1,0 +1,96 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.heading {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.center {
+  text-align: center;
+
+  .meta {
+    justify-content: center;
+  }
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  @include section-label;
+
+  @include respond-below(xs) {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+.number {
+  color: $color-text-dim;
+}
+
+.divider {
+  color: $color-text-dim;
+  font-weight: 400;
+}
+
+.label {
+  color: $color-accent;
+}
+
+.title {
+  font-family: $font-sans;
+  font-size: clamp(1.35rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  max-width: 22ch;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+
+  @include respond-below(xs) {
+    max-width: none;
+    font-size: clamp(1.25rem, 6.5vw, 1.5rem);
+  }
+}
+
+.serif .title {
+  font-family: $font-serif;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.dark {
+  .number,
+  .divider {
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .title {
+    color: $color-text-on-dark;
+  }
+
+  .subtitle {
+    color: $color-text-muted-on-dark;
+  }
+}
+
+.center .title {
+  max-width: none;
+  margin-inline: auto;
+}
+
+.subtitle {
+  margin-top: 1rem;
+  max-width: 560px;
+  color: $color-text-muted;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.center .subtitle {
+  margin-inline: auto;
+}

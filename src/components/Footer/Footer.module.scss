@@ -1,0 +1,114 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  border-top: 1px solid $color-border;
+  background: $color-bg-elevated;
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+
+.inner {
+  @include container;
+}
+
+.top {
+  display: grid;
+  gap: 2.5rem;
+
+  @include respond-to(md) {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.brand {
+  max-width: 420px;
+}
+
+.logo {
+  display: inline-block;
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  color: $color-text;
+  @include focus-ring;
+
+  span {
+    color: $color-text;
+  }
+}
+
+.tagline {
+  color: $color-text-muted;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  a {
+    font-size: 0.9375rem;
+    color: $color-text;
+    transition: color $transition;
+    @include focus-ring;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @include respond-below(xs) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.colTitle {
+  @include section-label;
+  margin-bottom: 1rem;
+  color: $color-text-dim;
+}
+
+.columns ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.columns a {
+  font-size: 0.9375rem;
+  color: $color-text-muted;
+  transition: color $transition;
+  @include focus-ring;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $color-border;
+
+  p {
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: $color-text-dim;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+  }
+}

@@ -1,0 +1,423 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  padding-bottom: 0;
+}
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section-padding;
+}
+
+.sectionAlt {
+  background: $color-bg-elevated;
+}
+
+.hero {
+  position: relative;
+  padding-block: clamp(3rem, 8vw, 5rem);
+  border-bottom: 1px solid $color-border;
+  overflow: hidden;
+  background: $color-bg;
+
+  @include respond-below(xs) {
+    padding-block: clamp(1.75rem, 6vw, 2.5rem);
+  }
+}
+
+.heroGrid {
+  @include topo-map-overlay;
+}
+
+.heroInner {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  @include section-label;
+  color: $color-text-dim;
+  margin-bottom: 1.5rem;
+
+  @include respond-below(xs) {
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    gap: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: $color-text-muted;
+    transition: color $transition;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.heroTitle {
+  font-family: $font-serif;
+  font-size: clamp(1.5rem, 7vw, 3.25rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  max-width: 16ch;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+
+  @include respond-below(xs) {
+    max-width: none;
+    font-size: clamp(1.375rem, 8vw, 1.75rem);
+  }
+}
+
+.heroDesc {
+  max-width: 560px;
+  color: $color-text-muted;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+
+  @include respond-below(xs) {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.backHome {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-text;
+  background: transparent;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-sm;
+  transition: border-color $transition, color $transition;
+  @include focus-ring;
+
+  @include respond-below(xs) {
+    width: 100%;
+    margin-bottom: 1.25rem;
+    padding: 0.8125rem 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  &:hover {
+    border-color: $color-text;
+    color: $color-accent;
+  }
+}
+
+.coords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+
+  @include respond-below(xs) {
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  span {
+    font-family: $font-mono;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: $color-text-dim;
+    text-transform: uppercase;
+
+    @include respond-below(xs) {
+      font-size: 0.625rem;
+      letter-spacing: 0.04em;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+.sectionTitle {
+  @include section-label;
+  font-size: 0.75rem;
+  color: $color-text-dim;
+  margin-bottom: 2rem;
+  letter-spacing: 0.2em;
+}
+
+.processGrid {
+  display: grid;
+  gap: 1rem;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.processStep {
+  @include card;
+  padding: 1.5rem;
+  background: $color-bg-white;
+
+  @include respond-below(xs) {
+    padding: 1.125rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+
+    @include respond-below(xs) {
+      font-size: 0.9375rem;
+    }
+  }
+
+  p {
+    color: $color-text-muted;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+
+    @include respond-below(xs) {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.stepNumber {
+  @include section-label;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.contentGrid {
+  display: grid;
+  gap: 3rem;
+
+  @include respond-to(lg) {
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+.contentBlock {
+  &:not(:last-child) {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-family: $font-serif;
+    font-size: 1.375rem;
+    margin-bottom: 1rem;
+    color: $color-text;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid $color-border;
+  }
+
+  p {
+    color: $color-text-muted;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: $color-text-muted;
+    line-height: 1.65;
+    font-size: 0.9375rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      background: $color-accent;
+      border-radius: 1px;
+    }
+  }
+}
+
+.sidebar {
+  @include card;
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: calc(#{$header-height} + 1.5rem);
+  background: $color-bg-elevated;
+}
+
+.sidebarTitle {
+  @include section-label;
+  color: $color-text-dim;
+  margin-bottom: 1rem;
+}
+
+.equipmentList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  li {
+    font-family: $font-mono;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: $color-text-muted;
+    padding: 0.625rem 0.75rem;
+    background: $color-bg-white;
+    border-radius: $radius-sm;
+    border: 1px solid $color-border;
+    overflow-wrap: anywhere;
+
+    @include respond-below(xs) {
+      font-size: 0.625rem;
+      padding: 0.5rem 0.625rem;
+    }
+
+    &::before {
+      content: '■';
+      color: $color-accent;
+      margin-right: 0.5rem;
+      font-size: 0.5rem;
+    }
+  }
+}
+
+.deliverablesGrid {
+  display: grid;
+  gap: 1rem;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.deliverable {
+  @include card;
+  padding: 1.25rem;
+  background: $color-bg-elevated;
+
+  h3 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $color-text-muted;
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+}
+
+.ctaSection {
+  @include section-padding;
+  background: $color-bg-dark;
+  color: $color-text-on-dark;
+}
+
+.ctaGrid {
+  display: grid;
+  gap: 2.5rem;
+
+  @include respond-to(lg) {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: start;
+  }
+}
+
+.ctaTitle {
+  font-family: $font-serif;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.ctaDesc {
+  color: $color-text-muted-on-dark;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+}
+
+.ctaContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  a {
+    color: $color-text-on-dark;
+    font-size: 0.9375rem;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.otherServices {
+  padding-block: 2.5rem;
+  border-top: 1px solid $color-border;
+  background: $color-bg;
+}
+
+.otherTitle {
+  @include section-label;
+  color: $color-text-dim;
+  margin-bottom: 1rem;
+}
+
+.otherGrid {
+  display: grid;
+  gap: 0.5rem;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.otherLink {
+  @include card;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+  background: $color-bg-white;
+  transition: border-color $transition, color $transition;
+
+  @include respond-below(xs) {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  &:hover {
+    border-color: $color-border-strong;
+    color: $color-accent;
+  }
+}

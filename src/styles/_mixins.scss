@@ -1,0 +1,105 @@
+@use 'variables' as *;
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $container-padding;
+}
+
+@mixin section-padding {
+  padding-block: clamp(2.5rem, 8vw, 6rem);
+
+  @include respond-below(xs) {
+    padding-block: clamp(2rem, 7vw, 2.5rem);
+  }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+  }
+}
+
+@mixin card {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+@mixin section-label {
+  font-family: $font-sans;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-accent;
+}
+
+@mixin mono-label {
+  @include section-label;
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) { @content; }
+  } @else if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: #{$breakpoint-xs - 1px}) { @content; }
+  } @else if $breakpoint == sm {
+    @media (max-width: #{$breakpoint-sm - 1px}) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: #{$breakpoint-md - 1px}) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: #{$breakpoint-lg - 1px}) { @content; }
+  }
+}
+
+@mixin topo-map-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/images/topo-contours.svg') center / cover no-repeat;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 15% 20%, rgba($color-bg, 0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 60% at 85% 75%, rgba($color-bg, 0.2) 0%, transparent 50%),
+      linear-gradient(
+        180deg,
+        rgba($color-bg, 0.08) 0%,
+        rgba($color-bg, 0.28) 55%,
+        rgba($color-bg, 0.62) 100%
+      );
+  }
+}
+
+@mixin topo-pattern {
+  @include topo-map-overlay;
+}
+
+@mixin grid-overlay {
+  @include topo-map-overlay;
+}

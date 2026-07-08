@@ -1,0 +1,236 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: $header-height;
+  background: rgba($color-bg-white, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color $transition, background $transition;
+
+  @include respond-below(xs) {
+    height: $header-height-narrow;
+  }
+}
+
+.menuOpen {
+  backdrop-filter: none;
+  background: $color-bg-white;
+  border-bottom-color: $color-border;
+}
+
+.scrolled {
+  border-bottom-color: $color-border;
+  background: rgba($color-bg-white, 0.98);
+}
+
+.inner {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 1.5rem;
+
+  @include respond-below(xs) {
+    gap: 0.5rem;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: clamp(0.8125rem, 2vw, 1rem);
+  letter-spacing: 0.02em;
+  flex-shrink: 1;
+  min-width: 0;
+  color: $color-text;
+  @include focus-ring;
+}
+
+.logoMark,
+.logoDot {
+  color: $color-text;
+}
+
+.navDesktop {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+}
+
+.navLink {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-text;
+  transition: color $transition;
+  @include focus-ring;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.cta {
+  display: none;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-white;
+  background: $color-accent;
+  border-radius: $radius-sm;
+  transition: background $transition;
+  flex-shrink: 0;
+  @include focus-ring;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+
+  @include respond-to(lg) {
+    display: inline-flex;
+  }
+}
+
+.mobileMenu {
+  display: none;
+  position: fixed;
+  inset: $header-height 0 0 0;
+  z-index: 150;
+  background: $color-bg-white;
+  border-top: 1px solid $color-border;
+  overflow-y: auto;
+
+  @include respond-below(xs) {
+    inset: $header-height-narrow 0 0 0;
+  }
+
+  @include respond-to(lg) {
+    display: none !important;
+  }
+}
+
+.mobileMenuOpen {
+  display: block;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 2rem $container-padding;
+
+  @include respond-below(xs) {
+    gap: 1rem;
+    padding: 1.25rem $container-padding 1.5rem;
+  }
+}
+
+.mobileNavLink {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-text;
+  @include focus-ring;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.ctaMobile {
+  display: inline-flex;
+  margin-top: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-white;
+  background: $color-accent;
+  border-radius: $radius-sm;
+  @include focus-ring;
+
+  @include respond-below(xs) {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 1rem;
+    letter-spacing: 0.08em;
+  }
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  flex-shrink: 0;
+  @include focus-ring;
+
+  @include respond-below(xs) {
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+  }
+
+  span {
+    display: block;
+    height: 2px;
+    background: $color-text;
+    transition: transform $transition, opacity $transition;
+  }
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.burgerOpen {
+  span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  span:nth-child(2) {
+    opacity: 0;
+  }
+
+  span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+.spacer {
+  height: $header-height;
+
+  @include respond-below(xs) {
+    height: $header-height-narrow;
+  }
+}

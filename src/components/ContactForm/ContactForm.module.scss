@@ -1,0 +1,121 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.form {
+  background: $color-bg-white;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  min-width: 0;
+
+  @include respond-below(xs) {
+    padding: 1rem;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.compact .grid {
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include respond-below(xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.label {
+  @include section-label;
+  color: $color-text-dim;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: $color-bg-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  color: $color-text;
+  transition: border-color $transition;
+  @include focus-ring;
+
+  &::placeholder {
+    color: $color-text-dim;
+  }
+
+  &:focus {
+    border-color: $color-text;
+    outline: none;
+  }
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.field select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235a5a5a' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.submit {
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.9375rem 1.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-white;
+  background: $color-text;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: background $transition, opacity $transition;
+  @include focus-ring;
+
+  &:hover:not(:disabled) {
+    background: $color-bg-dark-soft;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.submitAccent {
+  background: $color-accent;
+
+  &:hover:not(:disabled) {
+    background: $color-accent-hover;
+  }
+}
