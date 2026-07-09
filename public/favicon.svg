@@ -1,43 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="6" fill="#ba0018"/>
-
-  <!-- Ноги штатива -->
-  <path
-    d="M11.5 21.5 L7.5 29 M20.5 21.5 L24.5 29 M16 21.5 L16 29"
-    stroke="#fff"
-    stroke-width="2.25"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-
-  <!-- Головка штатива -->
-  <rect x="9.5" y="19.2" width="13" height="2.8" rx="0.6" fill="#fff"/>
-
-  <!-- Круглая база нивелира -->
-  <ellipse cx="16" cy="17.2" rx="7.2" ry="2.1" fill="#fff"/>
-  <ellipse
-    cx="16"
-    cy="17"
-    rx="5.6"
-    ry="1.35"
-    stroke="#1a1a1a"
-    stroke-width="0.7"
-    fill="none"
-    opacity="0.35"
-  />
-
-  <!-- Корпус-труба -->
-  <rect x="8.5" y="9.8" width="15" height="5.8" rx="2.9" fill="#fff"/>
-
-  <!-- Объектив (слева, крупнее) -->
-  <rect x="4.2" y="10.1" width="5.2" height="5.2" rx="2.6" fill="#1a1a1a"/>
-  <circle cx="6.2" cy="12.7" r="1.35" fill="#ba0018" opacity="0.55"/>
-
-  <!-- Окуляр (справа) -->
-  <rect x="23.2" y="10.6" width="4.2" height="4.2" rx="2.1" fill="#1a1a1a"/>
-  <circle cx="25.3" cy="12.7" r="0.85" fill="#ba0018" opacity="0.45"/>
-
-  <!-- Микровинты / фокус -->
-  <circle cx="12.8" cy="8.6" r="1.05" fill="#1a1a1a"/>
-  <rect x="15.8" y="8.1" width="2.2" height="1.6" rx="0.5" fill="#1a1a1a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#fff"/>
+  <g transform="translate(2 2) scale(0.14)">
+    <g fill="#1a1a1a">
+      <rect x="10" y="82" width="24" height="9" rx="4.5"/>
+      <rect x="34" y="78" width="34" height="16" rx="3"/>
+      <rect x="68" y="83" width="16" height="7" rx="3.5"/>
+      <rect x="44" y="94" width="10" height="18" rx="1.5"/>
+    </g>
+    <g stroke="#1a1a1a" stroke-width="5.5" stroke-linecap="round" fill="none">
+      <path d="M49 112 L28 172"/>
+      <path d="M49 112 L49 172"/>
+      <path d="M49 112 L70 148"/>
+    </g>
+    <path d="M108 44 A62 62 0 0 1 162 98" stroke="#1a1a1a" stroke-width="2.5" fill="none"/>
+    <text x="131" y="38" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#1a1a1a">N</text>
+    <text x="168" y="108" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#1a1a1a">E</text>
+    <path d="M132 72 L132 50" stroke="#8a8a8a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M132 72 L150 86" stroke="#bdbdbd" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <g fill="none" stroke="#ba0018" stroke-width="3.5" stroke-linejoin="round">
+      <path d="M108 122 L186 116 L176 184 L112 188 L108 150 Z"/>
+      <path d="M148 118 L142 186"/>
+      <path d="M128 148 L178 142"/>
+    </g>
+  </g>
 </svg>

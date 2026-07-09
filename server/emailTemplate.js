@@ -86,10 +86,11 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
                 </tr>
                 <tr>
                   <td style="padding:28px 32px 24px;">
+                    <img src="${SITE_URL}/logo.svg" alt="${BRAND_NAME}" width="56" height="56" style="display:block;margin-bottom:16px;border:0;" />
                     <p style="margin:0 0 10px;font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${COLORS.accent};">
                       Новая заявка
                     </p>
-                    <h1 style="margin:0;font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;line-height:1.1;color:${COLORS.text};">
+                    <h1 style="margin:0;font-family:Inter,Arial,sans-serif;font-size:24px;font-weight:700;line-height:1.15;color:${COLORS.text};">
                       ${LOGO_MAIN}<span style="color:${COLORS.accent};">${LOGO_ACCENT}</span>
                     </h1>
                     <p style="margin:8px 0 0;font-family:Inter,Arial,sans-serif;font-size:13px;color:${COLORS.muted};">

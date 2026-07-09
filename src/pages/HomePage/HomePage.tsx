@@ -1,5 +1,6 @@
 import { site } from '../../data/site'
 import { getServiceCards } from '../../data/services'
+import { Logo } from '../../components/Logo/Logo'
 import { SectionHeading } from '../../components/SectionHeading/SectionHeading'
 import { ServiceCard } from '../../components/ServiceCard/ServiceCard'
 import { ContactForm } from '../../components/ContactForm/ContactForm'
@@ -14,11 +15,9 @@ export function HomePage() {
         <div className={styles.heroGrid} aria-hidden="true" />
         <div className={styles.heroInner}>
           <div className={styles.heroContent}>
+            <h1 className={styles.heroSrOnly}>{site.name}</h1>
+            <Logo size="xl" className={styles.heroLogo} />
             <p className={styles.heroTag}>{site.tagline}</p>
-            <h1 className={styles.heroTitle}>
-              {site.logoMain}
-              <span className={styles.heroAccent}>{site.logoAccent}</span>
-            </h1>
             <p className={styles.heroDesc}>{site.description}</p>
             <div className={styles.heroActions}>
               <a href="#services" className={styles.btnPrimary}>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <g fill="#1a1a1a">
+    <rect x="10" y="82" width="24" height="9" rx="4.5"/>
+    <rect x="34" y="78" width="34" height="16" rx="3"/>
+    <rect x="68" y="83" width="16" height="7" rx="3.5"/>
+    <rect x="44" y="94" width="10" height="18" rx="1.5"/>
+    <circle cx="49" cy="88" r="3" fill="#444"/>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 112 L28 172"/>
+    <path d="M49 112 L49 172"/>
+    <path d="M49 112 L70 148"/>
+  </g>
+  <path d="M108 44 A62 62 0 0 1 162 98" stroke="#1a1a1a" stroke-width="2.5" fill="none"/>
+  <line x1="108" y1="44" x2="114" y2="44" stroke="#1a1a1a" stroke-width="2.2"/>
+  <circle cx="108" cy="44" r="2.8" fill="#1a1a1a"/>
+  <line x1="131" y1="49" x2="135" y2="54" stroke="#1a1a1a" stroke-width="2.2"/>
+  <circle cx="131" cy="49" r="2.8" fill="#1a1a1a"/>
+  <line x1="149" y1="68" x2="152" y2="74" stroke="#1a1a1a" stroke-width="2.2"/>
+  <circle cx="149" cy="68" r="2.8" fill="#1a1a1a"/>
+  <line x1="162" y1="98" x2="162" y2="104" stroke="#1a1a1a" stroke-width="2.2"/>
+  <circle cx="162" cy="98" r="2.8" fill="#1a1a1a"/>
+  <text x="131" y="38" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#1a1a1a">N</text>
+  <text x="168" y="108" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#1a1a1a">E</text>
+  <path d="M132 72 L132 50" stroke="#8a8a8a" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M132 72 L150 86" stroke="#bdbdbd" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="132" cy="72" r="3" fill="#1a1a1a"/>
+  <g fill="none" stroke="#ba0018" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M108 122 L186 116 L176 184 L112 188 L108 150 Z"/>
+    <path d="M148 118 L142 186"/>
+    <path d="M128 148 L178 142"/>
+    <path d="M112 165 L176 158"/>
+  </g>
+</svg>

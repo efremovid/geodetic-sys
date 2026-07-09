@@ -1,6 +1,7 @@
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { navLinks, site } from '../../data/site'
+import { navLinks } from '../../data/site'
+import { Logo } from '../Logo/Logo'
 import styles from './Header.module.scss'
 
 export function Header() {
@@ -33,10 +34,7 @@ export function Header() {
         className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${menuOpen ? styles.menuOpen : ''}`}
       >
         <div className={styles.inner}>
-          <Link to="/" className={styles.logo} onClick={closeMenu}>
-            <span className={styles.logoMark}>{site.logoMain}</span>
-            <span className={styles.logoDot}>{site.logoAccent}</span>
-          </Link>
+          <Logo asLink size="md" onClick={closeMenu} />
 
           <nav className={styles.navDesktop} aria-label="Основная навигация">
             {navLinks.map((link) => (

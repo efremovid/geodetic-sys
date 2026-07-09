@@ -25,19 +25,8 @@
   max-width: 420px;
 }
 
-.logo {
-  display: inline-block;
-  font-family: $font-sans;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+.logoWrap {
   margin-bottom: 1rem;
-  color: $color-text;
-  @include focus-ring;
-
-  span {
-    color: $color-accent;
-  }
 }
 
 .tagline {

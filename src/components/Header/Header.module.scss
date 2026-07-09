@@ -42,28 +42,6 @@
   }
 }
 
-.logo {
-  display: flex;
-  align-items: baseline;
-  font-family: $font-sans;
-  font-weight: 700;
-  font-size: clamp(0.8125rem, 2vw, 1rem);
-  letter-spacing: 0.02em;
-  flex-shrink: 1;
-  min-width: 0;
-  color: $color-text;
-  @include focus-ring;
-}
-
-.logoMark,
-.logoDot {
-  color: $color-text;
-}
-
-.logoDot {
-  color: $color-accent;
-}
-
 .navDesktop {
   display: none;
   align-items: center;

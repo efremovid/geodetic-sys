@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { site, footerNav, footerLegal } from '../../data/site'
+import { Logo } from '../Logo/Logo'
 import styles from './Footer.module.scss'
 
 export function Footer() {
@@ -8,9 +8,7 @@ export function Footer() {
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.brand}>
-            <Link to="/" className={styles.logo}>
-              {site.logoMain}<span>{site.logoAccent}</span>
-            </Link>
+            <Logo asLink size="lg" className={styles.logoWrap} />
             <p className={styles.tagline}>
               Ваш надёжный партнёр в области кадастровых и геодезических работ на территории Москвы,
               Московской области и других регионов.

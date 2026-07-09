@@ -1,0 +1,89 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.link {
+  display: inline-flex;
+  flex-shrink: 1;
+  min-width: 0;
+  @include focus-ring;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+  color: $color-text;
+
+  @include respond-below(xs) {
+    gap: 0.5rem;
+  }
+}
+
+.mark {
+  flex-shrink: 0;
+  display: block;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-family: $font-sans;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  min-width: 0;
+}
+
+.main {
+  color: $color-text;
+}
+
+.accent {
+  color: $color-accent;
+}
+
+.sm .mark {
+  width: 28px;
+  height: 28px;
+}
+
+.sm .wordmark {
+  font-size: 0.8125rem;
+}
+
+.md .mark {
+  width: 36px;
+  height: 36px;
+}
+
+.md .wordmark {
+  font-size: clamp(0.8125rem, 2vw, 1rem);
+}
+
+.lg .mark {
+  width: 52px;
+  height: 52px;
+}
+
+.lg .wordmark {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.xl .mark {
+  width: 72px;
+  height: 72px;
+}
+
+.xl .wordmark {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+}
+
+.markOnly .wordmark {
+  display: none;
+}
+
+.wordmarkOnly .mark {
+  display: none;
+}

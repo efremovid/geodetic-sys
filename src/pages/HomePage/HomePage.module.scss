@@ -52,29 +52,29 @@
   }
 }
 
+.heroSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.heroContent {
+  position: relative;
+}
+
+.heroLogo {
+  margin-bottom: 1.25rem;
+}
+
 .heroTag {
   @include section-label;
   margin-bottom: 1rem;
-}
-
-.heroTitle {
-  font-family: $font-sans;
-  font-size: clamp(1.875rem, 10vw, 5.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  margin-bottom: 1.5rem;
-  color: $color-text;
-  overflow-wrap: anywhere;
-
-  @include respond-below(xs) {
-    font-size: clamp(1.625rem, 11vw, 2rem);
-    margin-bottom: 1rem;
-  }
-}
-
-.heroAccent {
-  color: $color-accent;
 }
 
 .heroDesc {
