@@ -36,14 +36,6 @@ function createTransporter() {
   })
 }
 
-function getContactRecipients() {
-  const raw = env('CONTACT_TO') || env('SMTP_USER')
-  return raw
-    .split(/[,;]/)
-    .map((address) => address.trim())
-    .filter(Boolean)
-}
-
 function mapSmtpError(err) {
   const code = err?.code
   const responseCode = err?.responseCode
@@ -71,9 +63,9 @@ export async function sendContactEmail(body) {
 
   const smtpUser = env('SMTP_USER')
   const transporter = createTransporter()
-  const recipients = getContactRecipients()
+  const toEmail = env('CONTACT_TO') || smtpUser
 
-  if (!transporter || recipients.length === 0) {
+  if (!transporter || !toEmail) {
     console.error('SMTP not configured')
     return {
       status: 503,
@@ -90,7 +82,7 @@ export async function sendContactEmail(body) {
 
     await transporter.sendMail({
       from: `"${BRAND_NAME}" <${smtpUser}>`,
-      to: recipients,
+      to: toEmail,
       replyTo: email.trim(),
       subject: `Заявка с сайта — ${name}`,
       html,
