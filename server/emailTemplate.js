@@ -86,7 +86,7 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
                 </tr>
                 <tr>
                   <td style="padding:28px 32px 24px;">
-                    <img src="${SITE_URL}/logo.svg" alt="${BRAND_NAME}" width="56" height="56" style="display:block;margin-bottom:16px;border:0;" />
+                    <img src="${SITE_URL}/logo.png" alt="${BRAND_NAME}" width="72" height="72" style="display:block;margin-bottom:16px;border:0;" />
                     <p style="margin:0 0 10px;font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${COLORS.accent};">
                       Новая заявка
                     </p>
