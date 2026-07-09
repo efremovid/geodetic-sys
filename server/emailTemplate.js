@@ -49,14 +49,12 @@ function buildReplyMailto({ name, email }) {
     ENGINEER_TITLE,
     BRAND_NAME,
     COMPANY_PHONE,
-  ].join('\n')
+  ].join('\r\n')
 
-  const params = new URLSearchParams({
-    subject: `Re: Заявка — ${name}`,
-    body,
-  })
+  const subject = `Re: Заявка — ${name}`
 
-  return `mailto:${email}?${params.toString()}`
+  // encodeURIComponent (%20) — mobile mail clients often show literal "+" from URLSearchParams
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 }
 
 function escapeHref(str) {
