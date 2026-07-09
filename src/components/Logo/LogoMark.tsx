@@ -1,3 +1,5 @@
+import styles from './LogoMark.module.scss'
+
 interface LogoMarkProps {
   className?: string
   title?: string
@@ -6,11 +8,11 @@ interface LogoMarkProps {
 export function LogoMark({ className, title = 'ТопоСтройКадастр' }: LogoMarkProps) {
   return (
     <img
-      className={className}
+      className={`${styles.mark} ${className ?? ''}`}
       src="/logo.png"
       alt={title}
-      width={200}
-      height={200}
+      width={420}
+      height={460}
       decoding="async"
       draggable={false}
     />

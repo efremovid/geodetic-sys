@@ -23,7 +23,6 @@
 .mark {
   flex-shrink: 0;
   display: block;
-  object-fit: contain;
 }
 
 .wordmark {
@@ -47,7 +46,7 @@
 
 .sm .mark {
   width: 28px;
-  height: 28px;
+  height: auto;
 }
 
 .sm .wordmark {
@@ -56,7 +55,7 @@
 
 .md .mark {
   width: 36px;
-  height: 36px;
+  height: auto;
 }
 
 .md .wordmark {
@@ -65,7 +64,7 @@
 
 .lg .mark {
   width: 52px;
-  height: 52px;
+  height: auto;
 }
 
 .lg .wordmark {
@@ -74,7 +73,7 @@
 
 .xl .mark {
   width: 72px;
-  height: 72px;
+  height: auto;
 }
 
 .xl .wordmark {
