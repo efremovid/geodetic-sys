@@ -1,12 +1,5 @@
 import nodemailer from 'nodemailer'
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
+import { buildContactEmailHtml, buildContactEmailText } from './emailTemplate.js'
 
 function env(name) {
   const value = process.env[name]
@@ -78,14 +71,9 @@ export async function sendContactEmail(body) {
     }
   }
 
-  const html = `
-    <h2>Новая заявка с сайта GEODETIC.SYS</h2>
-    <p><strong>Имя:</strong> ${escapeHtml(name)}</p>
-    <p><strong>Телефон:</strong> ${escapeHtml(phone)}</p>
-    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-    <p><strong>Описание:</strong></p>
-    <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
-  `
+  const payload = { name, phone, email, message }
+  const html = buildContactEmailHtml(payload)
+  const text = buildContactEmailText(payload)
 
   try {
     await transporter.verify()
@@ -96,12 +84,7 @@ export async function sendContactEmail(body) {
       replyTo: email.trim(),
       subject: `Заявка с сайта — ${name}`,
       html,
-      text: [
-        `Имя: ${name}`,
-        `Телефон: ${phone}`,
-        `Email: ${email}`,
-        `Описание: ${message}`,
-      ].join('\n'),
+      text,
     })
 
     return { status: 200, body: { success: true } }
