@@ -1,4 +1,4 @@
-import { site, footerNav, footerLegal } from '../../data/site'
+import { site, footerNav } from '../../data/site'
 import { Logo } from '../Logo/Logo'
 import styles from './Footer.module.scss'
 
@@ -19,27 +19,15 @@ export function Footer() {
             </div>
           </div>
 
-          <div className={styles.columns}>
-            <div>
-              <h3 className={styles.colTitle}>Навигация</h3>
-              <ul>
-                {footerNav.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className={styles.colTitle}>Информация</h3>
-              <ul>
-                {footerLegal.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className={styles.navColumn}>
+            <h3 className={styles.colTitle}>Навигация</h3>
+            <ul>
+              {footerNav.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

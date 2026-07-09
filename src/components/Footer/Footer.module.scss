@@ -53,37 +53,28 @@
   }
 }
 
-.columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-
-  @include respond-below(xs) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
 .colTitle {
   @include section-label;
   margin-bottom: 1rem;
   color: $color-text-dim;
 }
 
-.columns ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
+.navColumn {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
 
-.columns a {
-  font-size: 0.9375rem;
-  color: $color-text-muted;
-  transition: color $transition;
-  @include focus-ring;
+  a {
+    font-size: 0.9375rem;
+    color: $color-text-muted;
+    transition: color $transition;
+    @include focus-ring;
 
-  &:hover {
-    color: $color-text;
+    &:hover {
+      color: $color-text;
+    }
   }
 }
 

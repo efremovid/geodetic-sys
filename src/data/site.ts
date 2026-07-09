@@ -33,10 +33,3 @@ export const footerNav = [
   { label: 'О компании', href: '/#about' },
   { label: 'Контакты', href: '/#contact' },
 ] as const
-
-export const footerLegal = [
-  { label: 'Условия', href: '#' },
-  { label: 'Приватность', href: '#' },
-  { label: 'Лицензии', href: '#' },
-  { label: 'Карта сайта', href: '#' },
-] as const
