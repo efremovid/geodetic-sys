@@ -77,7 +77,11 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: url('/images/topo-contours.svg') center / cover no-repeat;
+    background-image: url('/images/topo-contours.svg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   &::after {
