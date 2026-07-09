@@ -8,6 +8,7 @@
     "dev:client": "vite",
     "dev:server": "node server/index.js",
     "build": "tsc -b && vite build",
+    "generate:privacy-pdf": "node scripts/generate-privacy-pdf.mjs",
     "start": "node server/index.js",
     "lint": "oxlint",
     "preview": "vite preview"
@@ -29,7 +30,9 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "concurrently": "^10.0.3",
+    "dejavu-fonts-ttf": "^2.37.3",
     "oxlint": "^1.71.0",
+    "pdfkit": "^0.19.1",
     "typescript": "~6.0.2",
     "vite": "^8.1.1"
   }

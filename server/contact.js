@@ -52,12 +52,19 @@ function mapSmtpError(err) {
 }
 
 export async function sendContactEmail(body) {
-  const { name, phone, email, message } = body ?? {}
+  const { name, phone, email, message, consent } = body ?? {}
 
   if (!name?.trim() || !phone?.trim() || !email?.trim() || !message?.trim()) {
     return {
       status: 400,
       body: { error: 'Заполните обязательные поля' },
+    }
+  }
+
+  if (consent !== true) {
+    return {
+      status: 400,
+      body: { error: 'Необходимо согласие на обработку персональных данных' },
     }
   }
 

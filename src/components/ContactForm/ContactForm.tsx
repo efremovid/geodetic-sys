@@ -1,4 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
+import { site } from '../../data/site'
 import styles from './ContactForm.module.scss'
 
 interface ContactFormProps {
@@ -22,10 +23,22 @@ const initialForm: FormData = {
 
 const STATUS_HIDE_MS = 5000
 
+function isFormComplete(form: FormData, consent: boolean) {
+  return (
+    consent &&
+    form.name.trim() !== '' &&
+    form.phone.trim() !== '' &&
+    form.email.trim() !== '' &&
+    form.message.trim() !== ''
+  )
+}
+
 export function ContactForm({ compact = false, submitVariant = 'dark' }: ContactFormProps) {
   const [form, setForm] = useState<FormData>(initialForm)
+  const [consent, setConsent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  const canSubmit = isFormComplete(form, consent)
 
   useEffect(() => {
     if (!status) return
@@ -46,6 +59,15 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+
+    if (!canSubmit) {
+      setStatus({
+        type: 'error',
+        message: 'Заполните все поля и подтвердите согласие на обработку персональных данных.',
+      })
+      return
+    }
+
     setLoading(true)
     setStatus(null)
 
@@ -53,7 +75,7 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, consent: true }),
       })
 
       const data = await res.json().catch(() => ({}))
@@ -67,6 +89,7 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
         message: 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
       })
       setForm(initialForm)
+      setConsent(false)
     } catch (err) {
       setStatus({
         type: 'error',
@@ -139,10 +162,30 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
         </label>
       </div>
 
+      <label className={styles.consent}>
+        <input
+          type="checkbox"
+          name="consent"
+          checked={consent}
+          onChange={(e) => {
+            setConsent(e.target.checked)
+            if (status?.type === 'error' && e.target.checked) setStatus(null)
+          }}
+          required
+        />
+        <span>
+          Я даю согласие на{' '}
+          <a href={site.privacyPolicyPdf} target="_blank" rel="noopener noreferrer">
+            обработку персональных данных
+          </a>{' '}
+          в целях рассмотрения обращения и обратной связи.
+        </span>
+      </label>
+
       <button
         type="submit"
         className={`${styles.submit} ${submitVariant === 'accent' ? styles.submitAccent : ''}`}
-        disabled={loading}
+        disabled={loading || !canSubmit}
       >
         {loading ? 'Отправка…' : 'Отправить заявку'}
       </button>

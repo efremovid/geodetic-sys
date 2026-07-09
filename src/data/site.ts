@@ -9,6 +9,7 @@ export const site = {
   phoneHref: 'tel:+79779335335',
   email: 'th5tr@yandex.ru',
   emailHref: 'mailto:th5tr@yandex.ru',
+  privacyPolicyPdf: '/privacy-policy.pdf',
   region: 'Москва, Московская область и другие регионы',
   coords: {
     lat: '55°45\'21.2" N',
