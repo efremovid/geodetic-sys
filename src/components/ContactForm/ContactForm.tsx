@@ -1,5 +1,4 @@
-import { useState, type FormEvent } from 'react'
-import { useToast } from '../../context/ToastContext'
+import { useEffect, useState, type FormEvent } from 'react'
 import styles from './ContactForm.module.scss'
 
 interface ContactFormProps {
@@ -21,11 +20,22 @@ const initialForm: FormData = {
   message: '',
 }
 
+const STATUS_HIDE_MS = 5000
+
 export function ContactForm({ compact = false, submitVariant = 'dark' }: ContactFormProps) {
-  const { showToast } = useToast()
   const [form, setForm] = useState<FormData>(initialForm)
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+
+  useEffect(() => {
+    if (!status) return
+
+    const timer = window.setTimeout(() => {
+      setStatus(null)
+    }, STATUS_HIDE_MS)
+
+    return () => window.clearTimeout(timer)
+  }, [status])
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -52,15 +62,17 @@ export function ContactForm({ compact = false, submitVariant = 'dark' }: Contact
         throw new Error(data.error || 'Ошибка отправки')
       }
 
-      const successMessage = 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
-      setStatus({ type: 'success', message: successMessage })
-      showToast(successMessage)
+      setStatus({
+        type: 'success',
+        message: 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
+      })
       setForm(initialForm)
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : 'Не удалось отправить заявку. Попробуйте позже.'
-      setStatus({ type: 'error', message: errorMessage })
-      showToast(errorMessage, 'error')
+      setStatus({
+        type: 'error',
+        message:
+          err instanceof Error ? err.message : 'Не удалось отправить заявку. Попробуйте позже.',
+      })
     } finally {
       setLoading(false)
     }
