@@ -2,6 +2,9 @@ const SITE_URL = 'https://geodetic-sys.vercel.app'
 const BRAND_NAME = 'ТопоСтройКадастр'
 const LOGO_MAIN = 'ТопоСтрой'
 const LOGO_ACCENT = 'Кадастр'
+const ENGINEER_NAME = 'Яриков Георгий'
+const ENGINEER_TITLE = 'инженер-геодезист'
+const COMPANY_PHONE = '+7 (977) 933-53-35'
 
 const COLORS = {
   bg: '#fcfcfc',
@@ -36,13 +39,48 @@ function fieldRow(label, value) {
   `
 }
 
+function buildReplyMailto({ name, email }) {
+  const body = [
+    `Здравствуйте, ${name}!`,
+    '',
+    '',
+    'С уважением,',
+    ENGINEER_NAME,
+    ENGINEER_TITLE,
+    BRAND_NAME,
+    COMPANY_PHONE,
+  ].join('\n')
+
+  const params = new URLSearchParams({
+    subject: `Re: Заявка — ${name}`,
+    body,
+  })
+
+  return `mailto:${email}?${params.toString()}`
+}
+
+function escapeHref(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+}
+
+function actionButton(href, label, variant = 'dark') {
+  const bg = variant === 'accent' ? COLORS.accent : COLORS.dark
+
+  return `
+    <a href="${escapeHref(href)}"
+       style="display:inline-block;padding:14px 24px;background-color:${bg};color:${COLORS.white};font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;white-space:nowrap;">
+      ${label}
+    </a>
+  `
+}
+
 export function buildContactEmailHtml({ name, phone, email, message }) {
   const safeName = escapeHtml(name)
   const safePhone = escapeHtml(phone)
   const safeEmail = escapeHtml(email)
   const safeMessage = escapeHtml(message).replace(/\n/g, '<br>')
-  const telHref = phone.replace(/[^\d+]/g, '')
-  const replyHref = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(`Re: Заявка — ${name}`)}`
+  const clientTelHref = `tel:${phone.replace(/[^\d+]/g, '')}`
+  const replyHref = buildReplyMailto({ name, email })
 
   const now = new Date().toLocaleString('ru-RU', {
     timeZone: 'Europe/Moscow',
@@ -120,7 +158,7 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
                   <td style="padding:0 12px;">
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:${COLORS.elevated};border:1px solid ${COLORS.border};">
                       ${fieldRow('Имя', safeName)}
-                      ${fieldRow('Телефон', `<a href="tel:${telHref}" style="color:${COLORS.text};text-decoration:none;">${safePhone}</a>`)}
+                      ${fieldRow('Телефон', `<a href="${clientTelHref}" style="color:${COLORS.text};text-decoration:none;">${safePhone}</a>`)}
                       ${fieldRow('Email', `<a href="mailto:${safeEmail}" style="color:${COLORS.accent};text-decoration:none;">${safeEmail}</a>`)}
                       <tr>
                         <td colspan="2" style="padding:16px 20px;">
@@ -133,10 +171,16 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
                 </tr>
                 <tr>
                   <td style="padding:24px 32px 28px;">
-                    <a href="${replyHref}"
-                       style="display:inline-block;padding:14px 28px;background-color:${COLORS.dark};color:${COLORS.white};font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:2px;">
-                      Ответить клиенту
-                    </a>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="padding:0 12px 8px 0;vertical-align:top;">
+                          ${actionButton(clientTelHref, 'Позвонить клиенту', 'accent')}
+                        </td>
+                        <td style="padding:0 0 8px 0;vertical-align:top;">
+                          ${actionButton(replyHref, 'Ответить клиенту', 'dark')}
+                        </td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
               </table>
@@ -165,6 +209,17 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
 }
 
 export function buildContactEmailText({ name, phone, email, message }) {
+  const replyBody = [
+    `Здравствуйте, ${name}!`,
+    '',
+    '',
+    'С уважением,',
+    ENGINEER_NAME,
+    ENGINEER_TITLE,
+    BRAND_NAME,
+    COMPANY_PHONE,
+  ].join('\n')
+
   return [
     `${BRAND_NAME} — новая заявка с сайта`,
     '═'.repeat(40),
@@ -175,6 +230,14 @@ export function buildContactEmailText({ name, phone, email, message }) {
     '',
     'Описание:',
     message,
+    '',
+    '─'.repeat(40),
+    `Позвонить: ${phone.replace(/[^\d+]/g, '')}`,
+    '',
+    'Шаблон ответа клиенту:',
+    `Тема: Re: Заявка — ${name}`,
+    '',
+    replyBody,
     '',
     '─'.repeat(40),
     SITE_URL,
