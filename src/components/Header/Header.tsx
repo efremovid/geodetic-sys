@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { navLinks } from '../../data/site'
+import { navLinks, site } from '../../data/site'
 import styles from './Header.module.scss'
 
 export function Header() {
@@ -34,8 +34,8 @@ export function Header() {
       >
         <div className={styles.inner}>
           <Link to="/" className={styles.logo} onClick={closeMenu}>
-            <span className={styles.logoMark}>GEODETIC</span>
-            <span className={styles.logoDot}>.SYS</span>
+            <span className={styles.logoMark}>{site.logoMain}</span>
+            <span className={styles.logoDot}>{site.logoAccent}</span>
           </Link>
 
           <nav className={styles.navDesktop} aria-label="Основная навигация">

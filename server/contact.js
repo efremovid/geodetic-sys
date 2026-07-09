@@ -1,6 +1,8 @@
 import nodemailer from 'nodemailer'
 import { buildContactEmailHtml, buildContactEmailText } from './emailTemplate.js'
 
+const BRAND_NAME = 'ТопоСтройКадастр'
+
 function env(name) {
   const value = process.env[name]
   if (!value) return ''
@@ -79,7 +81,7 @@ export async function sendContactEmail(body) {
     await transporter.verify()
 
     await transporter.sendMail({
-      from: `"GEODETIC.SYS" <${smtpUser}>`,
+      from: `"${BRAND_NAME}" <${smtpUser}>`,
       to: toEmail,
       replyTo: email.trim(),
       subject: `Заявка с сайта — ${name}`,

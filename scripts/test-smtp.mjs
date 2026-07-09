@@ -42,9 +42,9 @@ try {
   console.log('✓ Подключение и авторизация успешны')
 
   await transporter.sendMail({
-    from: `"GEODETIC.SYS test" <${user}>`,
+    from: `"ТопоСтройКадастр test" <${user}>`,
     to,
-    subject: 'Тест GEODETIC.SYS',
+    subject: 'Тест ТопоСтройКадастр',
     text: 'Если вы видите это письмо — SMTP настроен правильно.',
   })
   console.log(`✓ Тестовое письмо отправлено на ${to}`)

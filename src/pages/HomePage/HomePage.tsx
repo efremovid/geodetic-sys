@@ -15,7 +15,10 @@ export function HomePage() {
         <div className={styles.heroInner}>
           <div className={styles.heroContent}>
             <p className={styles.heroTag}>{site.tagline}</p>
-            <h1 className={styles.heroTitle}>GEODETIC.SYS</h1>
+            <h1 className={styles.heroTitle}>
+              {site.logoMain}
+              <span className={styles.heroAccent}>{site.logoAccent}</span>
+            </h1>
             <p className={styles.heroDesc}>{site.description}</p>
             <div className={styles.heroActions}>
               <a href="#services" className={styles.btnPrimary}>

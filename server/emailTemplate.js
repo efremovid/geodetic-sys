@@ -1,4 +1,7 @@
 const SITE_URL = 'https://geodetic-sys.vercel.app'
+const BRAND_NAME = 'ТопоСтройКадастр'
+const LOGO_MAIN = 'ТопоСтрой'
+const LOGO_ACCENT = 'Кадастр'
 
 const COLORS = {
   bg: '#fcfcfc',
@@ -56,7 +59,7 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Новая заявка — GEODETIC.SYS</title>
+  <title>Новая заявка — ${BRAND_NAME}</title>
   <!--[if mso]>
   <style type="text/css">
     body, table, td { font-family: Arial, sans-serif !important; }
@@ -87,7 +90,7 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
                       Новая заявка
                     </p>
                     <h1 style="margin:0;font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;line-height:1.1;color:${COLORS.text};">
-                      GEODETIC<span style="color:${COLORS.accent};">.SYS</span>
+                      ${LOGO_MAIN}<span style="color:${COLORS.accent};">${LOGO_ACCENT}</span>
                     </h1>
                     <p style="margin:8px 0 0;font-family:Inter,Arial,sans-serif;font-size:13px;color:${COLORS.muted};">
                       Экспертная геодезия и кадастр
@@ -144,10 +147,10 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
             <td style="background-color:${COLORS.dark};padding:24px 32px;border:1px solid ${COLORS.dark};">
               <p style="margin:0 0 6px;font-family:Inter,Arial,sans-serif;font-size:12px;color:rgba(255,255,255,0.72);">
                 Письмо отправлено автоматически с сайта
-                <a href="${SITE_URL}" style="color:${COLORS.white};text-decoration:underline;">GEODETIC.SYS</a>
+                <a href="${SITE_URL}" style="color:${COLORS.white};text-decoration:underline;">${BRAND_NAME}</a>
               </p>
               <p style="margin:0;font-family:Inter,Arial,sans-serif;font-size:11px;letter-spacing:0.06em;color:rgba(255,255,255,0.45);">
-                © GEODETIC SYSTEMS · Техническая точность гарантирована
+                © ${BRAND_NAME} · Техническая точность гарантирована
               </p>
             </td>
           </tr>
@@ -162,7 +165,7 @@ export function buildContactEmailHtml({ name, phone, email, message }) {
 
 export function buildContactEmailText({ name, phone, email, message }) {
   return [
-    'GEODETIC.SYS — новая заявка с сайта',
+    `${BRAND_NAME} — новая заявка с сайта`,
     '═'.repeat(40),
     '',
     `Имя:       ${name}`,

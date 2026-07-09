@@ -9,7 +9,7 @@ export function Footer() {
         <div className={styles.top}>
           <div className={styles.brand}>
             <Link to="/" className={styles.logo}>
-              GEODETIC<span>.SYS</span>
+              {site.logoMain}<span>{site.logoAccent}</span>
             </Link>
             <p className={styles.tagline}>
               Ваш надёжный партнёр в области кадастровых и геодезических работ на территории Москвы,
