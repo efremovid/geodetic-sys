@@ -37,7 +37,7 @@ SMTP_PORT=465
 SMTP_SECURE=true
 SMTP_USER=th5tr@yandex.ru
 SMTP_PASS=ваш_пароль_приложения
-CONTACT_TO=th5tr@yandex.ru
+CONTACT_TO=th5tr@yandex.ru,i.efremov.psk@yandex.ru
 ```
 
 ## Production (локально)
@@ -75,7 +75,7 @@ git push -u origin main
 | `SMTP_SECURE` | `true` |
 | `SMTP_USER` | ваш email Yandex |
 | `SMTP_PASS` | пароль приложения Yandex |
-| `CONTACT_TO` | email для получения заявок |
+| `CONTACT_TO` | email получателей заявок (несколько через запятую) |
 
 5. Deploy
 
