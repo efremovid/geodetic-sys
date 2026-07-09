@@ -164,30 +164,24 @@
 
 .burger {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 5px;
   width: 40px;
   height: 40px;
-  padding: 8px;
+  padding: 0;
+  color: $color-text;
   background: none;
   border: 1px solid $color-border;
   border-radius: $radius-sm;
   cursor: pointer;
   flex-shrink: 0;
+  -webkit-appearance: none;
+  appearance: none;
   @include focus-ring;
 
   @include respond-below(xs) {
     width: 36px;
     height: 36px;
-    padding: 7px;
-  }
-
-  span {
-    display: block;
-    height: 2px;
-    background: $color-text;
-    transition: transform $transition, opacity $transition;
   }
 
   @include respond-to(lg) {
@@ -195,17 +189,14 @@
   }
 }
 
-.burgerOpen {
-  span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
+.burgerIcon {
+  display: block;
+  width: 22px;
+  height: 22px;
 
-  span:nth-child(2) {
-    opacity: 0;
-  }
-
-  span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+  @include respond-below(xs) {
+    width: 20px;
+    height: 20px;
   }
 }
 

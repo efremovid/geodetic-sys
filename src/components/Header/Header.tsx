@@ -50,15 +50,41 @@ export function Header() {
 
           <button
             type="button"
-            className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
+            className={styles.burger}
             aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span />
-            <span />
-            <span />
+            {menuOpen ? (
+              <svg
+                className={styles.burgerIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            ) : (
+              <svg
+                className={styles.burgerIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            )}
           </button>
         </div>
       </header>
